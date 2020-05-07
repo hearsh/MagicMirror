@@ -28,9 +28,14 @@ Module.register('MMM-Com',{
 	getHeader: function() {
 		return this.data.header + ' Foo Bar';
 	},
+	noBlankScreen: function() {
+		const wrapper = document.getElementById(`nightMode`);
+		wrapper.remove();
+	},
 	blankScreen: function() {
 		const mainContainer = document.getElementById(`${this.id}`);
 		const wrapper = document.createElement("div");
+		wrapper.id = 'nightMode';
 		wrapper.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
 		wrapper.style.position = 'absolute';
 		wrapper.style.top = 0;
@@ -53,6 +58,9 @@ Module.register('MMM-Com',{
 		Log.log(this.name + " received a socket notification: " + notification + " - Payload: " + payload);
 		if (notification === 'Night Mode') {
 			this.blankScreen();
+		}
+		if (notification === 'Day Mode') {
+			this.noBlankScreen();
 		}
 	}
 });
