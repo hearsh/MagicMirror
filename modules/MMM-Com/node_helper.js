@@ -19,7 +19,6 @@ const adresses = Object.keys(ifaces).reduce(function (result, dev) {
     return result.concat(details.family === 'IPv4' && !details.internal ? [details.address] : []);
   }, []));
 });
- console.log(adresses);
 
 module.exports = NodeHelper.create({
 
@@ -36,7 +35,7 @@ module.exports = NodeHelper.create({
 
 	socketNotificationReceived: function(notification, payload) {
 		if (notification === 'Dom Started') {
-			this.sendSocketNotification('IP Address', adresses);
+			this.sendSocketNotification('IP Address', adresses.replace('lo', ''));
 		}
 	},
 
