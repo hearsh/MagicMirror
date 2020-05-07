@@ -10,6 +10,16 @@
 const NodeHelper = require("node_helper");
 const url = require("url");
 const fs = require("fs");
+// Network interfaces
+const ifaces = require('os').networkInterfaces();
+
+// Iterate over interfaces ...
+const adresses = Object.keys(ifaces).reduce(function (result, dev) {
+  return result.concat(ifaces[dev].reduce(function (result, details) {
+    return result.concat(details.family === 'IPv4' && !details.internal ? [details.address] : []);
+  }, []));
+});
+ console.log(adresses);
 
 module.exports = NodeHelper.create({
 
@@ -25,8 +35,8 @@ module.exports = NodeHelper.create({
 	},
 
 	socketNotificationReceived: function(notification, payload) {
-		if (notification === 'Blank Screen') {
-			// this.sendSocketNotification('Night Mode');
+		if (notification === 'Dom Started') {
+			this.sendSocketNotification('IP Address', adresses);
 		}
 	},
 

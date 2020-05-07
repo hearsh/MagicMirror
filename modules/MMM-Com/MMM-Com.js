@@ -17,16 +17,21 @@ Module.register('MMM-Com',{
 	getDom: function() {
 		const wrapper = document.createElement('div');
 		wrapper.id = this.id;
-		// MM.getModules().exceptModule(this).enumerate(function(module) {
-		// 	module.hide(1000, function() {
-		// 		//Module hidden.
-		// 	});
-		// });
-
 		return wrapper;
 	},
-	getHeader: function() {
-		return this.data.header + ' Foo Bar';
+	IPFinder: function(ip) {
+		const mainContainer = document.getElementById(`${this.id}`);
+		const wrapper = document.createElement("div");
+		wrapper.style.position = 'absolute';
+		wrapper.style.bottom = 0;
+		wrapper.style.width = '100%';
+		const text = document.createTextNode(`Visit http://${ip}:5000)`);
+		const para = document.createElement('p');
+		para.style.fontSize = '20px';
+		para.style.textAlign = 'center';
+		para.appendChild(text);
+		wrapper.appendChild(para);
+		mainContainer.appendChild(wrapper);
 	},
 	noBlankScreen: function() {
 		const wrapper = document.getElementById(`nightMode`);
@@ -54,7 +59,7 @@ Module.register('MMM-Com',{
 			Log.log(this.name + " received a system notification: " + notification);
 		}
 		if (notification === 'DOM_OBJECTS_CREATED') {
-			this.sendSocketNotification('Blank Screen');
+			this.sendSocketNotification('Dom Started');
 		}
 	},
 	socketNotificationReceived: function(notification, payload) {
@@ -64,6 +69,10 @@ Module.register('MMM-Com',{
 		}
 		if (notification === 'Day Mode') {
 			this.noBlankScreen();
+		}
+		if (notification === 'IP Address') {
+			console.log('here', payload);
+			this.IPFinder(payload);
 		}
 	}
 });
