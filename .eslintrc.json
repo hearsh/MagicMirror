@@ -1,7 +1,7 @@
 {
 	"rules": {
-		"indent": ["error", "tab"],
-		"quotes": ["error", "double"],
+		"indent": ["error", "space"],
+		"quotes": ["error", "single"],
         "semi": ["error"],
 		"max-len": ["error", 250],
 		"curly": "error",
