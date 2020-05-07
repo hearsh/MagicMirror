@@ -25,7 +25,7 @@ Module.register('MMM-Com',{
 		wrapper.style.position = 'absolute';
 		wrapper.style.bottom = 0;
 		wrapper.style.width = '100%';
-		const text = document.createTextNode(`Visit http://${ip}:5000)`);
+		const text = document.createTextNode(`Visit http://${ip}:5000 If you are smart you will figure it out`);
 		const para = document.createElement('p');
 		para.style.fontSize = '20px';
 		para.style.textAlign = 'center';
