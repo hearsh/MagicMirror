@@ -30,7 +30,10 @@ Module.register('MMM-Com',{
 	},
 	noBlankScreen: function() {
 		const wrapper = document.getElementById(`nightMode`);
-		wrapper.remove();
+		console.log(wrapper);
+		if (wrapper) {
+			wrapper.remove();
+		}
 	},
 	blankScreen: function() {
 		const mainContainer = document.getElementById(`${this.id}`);

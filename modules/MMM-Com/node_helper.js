@@ -16,7 +16,7 @@ module.exports = NodeHelper.create({
 	start: function() {
 		this.expressApp.get('/MMM-com', (req, res) => {
 			var query = url.parse(req.url, true).query;
-			if (query.nightMode) {
+			if (query.nightMode === 'true') {
 				this.sendSocketNotification('Night Mode');
 			} else {
 				this.sendSocketNotification('Day Mode');
