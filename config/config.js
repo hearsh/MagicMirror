@@ -97,6 +97,15 @@ var config = {
 				broadcastNewsUpdates: true
 			}
 		},
+		 {
+		    module: 'MMM-BackgroundSlideshow',
+		    position: 'fullscreen_below',
+		    config: {
+		      imagePaths: ['modules/MMM-BackgroundSlideshow/exampleImages/'],
+		      transitionImages: true,
+		      randomizeImageOrder: true,
+		    },
+  		},
 		{
 			module: "MMM-Com",
 			position: "top_right"
