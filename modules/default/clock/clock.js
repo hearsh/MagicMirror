@@ -35,6 +35,9 @@ Module.register("clock",{
 	getStyles: function() {
 		return ["clock_styles.css"];
 	},
+	hide: function() {
+		hide();
+	},
 	// Define start sequence.
 	start: function() {
 		Log.info("Starting module: " + this.name);

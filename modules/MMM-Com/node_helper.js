@@ -15,13 +15,18 @@ module.exports = NodeHelper.create({
 
 	start: function() {
 		this.expressApp.get('/MMM-com', (req, res) => {
-      console.log('MMM-Com logging', req);
+			var query = url.parse(req.url, true).query;
+			if (query.nightMode) {
+				this.sendSocketNotification('Night Mode');
+			} else {
+				this.sendSocketNotification('Day Mode');
+			}
 		});
 	},
 
 	socketNotificationReceived: function(notification, payload) {
 		if (notification === 'Blank Screen') {
-			this.sendSocketNotification('Night Mode');
+			// this.sendSocketNotification('Night Mode');
 		}
 	},
 
